@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Weather App</title>
+    <title>SkyCast</title>
     <link rel="stylesheet" href="style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -16,15 +16,24 @@
             font-weight: 400;
             font-style: normal;
         }
+        /* to remove the scroll bar */
+        .no-scrollbar::-webkit-scrollbar {
+        display: none; /* Chrome, Safari, and Opera */
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none; /* Internet Explorer and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
     </style>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-     <input type="">
+     <script src="location.js"></script>
 </head>
 
 <body class="flex flex-col bg-[#051213] text-white">
     <header class="flex h-[100px] gap-5  items-center self-center w-full bg-[#081A1D] p-5 rounded-lg mt-5">
         <div class="app-logo"><img src="assets/images/logo.png" alt="" srcset="" class="h-[4rem]"></div>
-        <div class="app-name text-5xl  font-bold">Weather App</div>
+        <div class="app-name text-5xl  font-bold">SkyCast</div>
     </header>
     <main class="flex flex-col ">
         <section class="search self-center flex px-5 md:px-10 justify-center gap-4 my-4">
@@ -37,7 +46,7 @@
         </section>
         <section class="weather-box flex flex-col md:flex-row-reverse justify-around self-center w-3/4 p-10 rounded-md  mt-4 bg-[#081A1D]">
             <div class="weather-visual flex flex-col items-center">
-                <img class="h-[10rem]" src="assets/images/sunny.png" alt="" srcset="">
+                <img class="h-[10rem]" src="assets/images/01.png" alt="" srcset="">
                 <div class="info flex flex-col items-center">
                     <div>
                         <span class="temp">30</span><span>°C</span>
@@ -76,7 +85,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -85,7 +94,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -94,7 +103,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -103,7 +112,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -112,7 +121,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
             </div>
@@ -123,7 +132,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -132,7 +141,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -141,7 +150,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -150,7 +159,7 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
                 <div class="weather-card flex justify-between items-center mx-5 py-2">
@@ -159,15 +168,15 @@
                         <div class="">Today</div>
                     </div>
                     <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/01.png">
                     </div>
                 </div>
             </div>
         </section>
-        <section class="daily-slides flex justify-around my-2 md:w-3/4 self-center  overflow-x-auto flex-shrink-0 overflow-hidden">
+        <section class="daily-slides no-scrollbar flex justify-around my-2 w-3/4 self-center  overflow-x-auto flex-shrink-0 overflow-hidden">
             <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
                 <div class="day">Monday</div>
-                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <img class="visual h-[5rem]" src="assets/images/01.png">
                 <div class="info flex flex-col items-center">
                     <div>
                         <span class="temp">30</span><span>°C</span>
@@ -242,7 +251,7 @@
         <div class="">policy</div>
         <div class="">contact us</div>
     </footer>
-    <script src="script.js"></script>
+    <script src="weather.js"></script>
 </body>
 
 </html>
