@@ -81,7 +81,7 @@ To get started with SkyCast, follow these steps:
 This project is built and maintained by:
 
 - **[Ashwith Rai](https://github.com/Rai-shwith)** – Lead Developer
-- **[Hiba Zynab](https://github.com/HibaZaynab)** – Co-Developer and Designer
+- **[Hiba Zaynab](https://github.com/HibaZaynab)** – Co-Developer and Designer
 
 ---
 
