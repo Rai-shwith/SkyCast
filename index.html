@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pavanam&display=swap" rel="stylesheet">
+    <style>
+        * {
+            font-family: "Pavanam", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+    </style>
+    <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+     <input type="">
+</head>
+
+<body class="flex flex-col bg-[#051213] text-white">
+    <header class="flex h-[100px] gap-5  items-center self-center w-full bg-[#081A1D] p-5 rounded-lg mt-5">
+        <div class="app-logo"><img src="assets/images/logo.png" alt="" srcset="" class="h-[4rem]"></div>
+        <div class="app-name text-5xl  font-bold">Weather App</div>
+    </header>
+    <main class="flex flex-col ">
+        <section class="search self-center flex px-5 md:px-10 justify-center gap-4 my-4">
+            <input
+                class="w-full indent-5 md:w-[69vw] bg-[#193235] focus:outline-none focus:ring-5 focus:ring-slate-100 rounded-md"
+                type="text" placeholder="Search: City">
+            <div class="search-icon h-[2rem]">
+                <img class="object-cover h-full w-full" src="assets/images/search.png" alt="" srcset="">
+            </div>
+        </section>
+        <section class="weather-box flex flex-col md:flex-row-reverse justify-around self-center w-3/4 p-10 rounded-md  mt-4 bg-[#081A1D]">
+            <div class="weather-visual flex flex-col items-center">
+                <img class="h-[10rem]" src="assets/images/sunny.png" alt="" srcset="">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="weather-detail ">
+                <div class="flex flex-col items-center">
+                    <div class="text-3xl">
+                        <span class="city font-bold">Bengaluru</span>
+                        <span class="state font-bold">Karnataka</span>
+                        <span class="code font-bold">IN</span>
+                    </div>
+                    <div class="text-xs ">
+                        <span class="day">Saturday</span>
+                        <span class="time">12:00 pm</span>
+                    </div>
+                </div>
+                <div class="other-info grid md:grid-cols-2 md:mt-[2rem] md:ml-[5rem] md:text-xl md:gap-1">
+                    <div class=""><span>Precipitation: </span><span class="prep">4</span><span>%</span></div>
+                    <div class=""><span>Humidity: </span><span class="humid">54</span><span>%</span></div>
+                    <div class=""><span>Wind: </span><span class="wind">18</span><span></span>km/h</div>
+                    <div class=""><span>Sunset: </span><span class="sunset">6:32</span><span>pm</span></div>
+                    <div class=""><span>Sunrise: </span><span class="sunrise">6:08</span><span>am</span></div>
+                    <div class=""><span>Chance of Rain: </span><span class="chance-of-rain">10</span><span>%</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="timely-weather-slides flex justify-between rounded-md md:w-3/4 mx-10 overflow-x-auto self-center bg-[#081A1D] my-10 p-10">
+            <div class="flex flex-col w-full border-r-2 divide-y divide-[#193235] border-[#193235]">
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="info flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col w-full divide-y divide-[#193235]">
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+                <div class="weather-card flex justify-between items-center mx-5 py-2">
+                    <div class="flex flex-col items-start text-sm md:text-lg">
+                        <div class="">11:00 am</div>
+                        <div class="">Today</div>
+                    </div>
+                    <div class="visuals">
+                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/sunny.png">
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="daily-slides flex justify-around my-2 md:w-3/4 self-center  overflow-x-auto flex-shrink-0 overflow-hidden">
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+            <div class="day-card flex bg-[#081A1D] py-5 px-10 rounded-xl flex-col items-center m-1 w-fit flex-shrink-0">
+                <div class="day">Monday</div>
+                <img class="visual h-[5rem]" src="assets/images/sunny.png">
+                <div class="info flex flex-col items-center">
+                    <div>
+                        <span class="temp">30</span><span>°C</span>
+                    </div>
+                    <div class="weather-type">Mostly Sunny</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer class="flex justify-around w-full bg-[#081A1D] relative bottom-0">
+        <div class="">about</div>
+        <div class="">policy</div>
+        <div class="">contact us</div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
