@@ -2,10 +2,11 @@
   "name": "weatherapp",
   "version": "1.0.0",
   "main": "script.js",
+  "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "vite",
-    "build": "vite build"
+    "build": "tailwindcss -i ./public/style.css -o ./public/assets/css/style.css --minify"
   },
   "keywords": [],
   "author": "",

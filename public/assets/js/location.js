@@ -1,6 +1,19 @@
+let API_KEY;
+// Function to get the API key from the server
+const getAPIKey = async () => {
+  console.log('Entering the Function getAPIKey');
+  const response = await fetch('/apikey');
+  const data = await response.json();
+  API_KEY = data.API_KEY;
+  console.log(API_KEY);
+}
+
+getAPIKey();
+
+
 // Function to get the location of the user using their GPS coordinates
 const getGPSLocation = async () => {
-    // Example implementation
+    console.log('Entering the Function getGPSLocation');
     return new Promise((resolve, reject) => {
       if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
@@ -22,16 +35,18 @@ const getGPSLocation = async () => {
 
 // Function to get the latitude and longitude of a city
 const directGeocoding = async (city) => {
+  console.log('Entering the Function directGeocoding');
     const response = await fetch(
       `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}`
     );
     const data = await response.json();
     console.log(data);
-    return { lat: data[0].lat, lon: data[0].lon };
+    return { lat: data[0].lat, lon: data[0].lon, name: data[0].name, state: data[0].state, country: data[0].country };
   };
 
   // Function to get the city from latitude and longitude
 const reverseGeocoding = async (lat, lon) => {
+  console.log('Entering the Function reverseGeocoding')
     const response = await fetch(
       `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_KEY}`
     );
@@ -41,12 +56,12 @@ const reverseGeocoding = async (lat, lon) => {
 
   // Function to get the location of the user using the IP address
 const getIPLocation = async () => {
+  console.log('Entering the Function getIPLocation');
     const response = await fetch("https://ipapi.co/json/");
     const data = await response.json();
-    console.log(data.city);
-  
     return { lat: data.latitude, lon: data.longitude };
   };
+
 
   //function to fetch the geolocation coordinates when the browser loads the document
 // document.addEventListener('DOMContentLoaded', async () => {
@@ -60,3 +75,5 @@ const getIPLocation = async () => {
 //     console.error('Error getting GPS location:', error);
 //   }
 // });
+
+export {directGeocoding,getGPSLocation,reverseGeocoding,getIPLocation,API_KEY};

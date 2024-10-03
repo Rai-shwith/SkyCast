@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyCast</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="assets/css/style.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -29,7 +30,7 @@
     }
     </style>
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
-     <script src="location.js"></script>
+     <script type="module" src="assets/js/location.js"></script>
 </head>
 
 <body class="flex flex-col bg-[#051213] text-white">
@@ -40,9 +41,9 @@
     <main class="flex flex-col ">
         <section class="search self-center flex px-5 md:px-10 justify-center gap-4 my-4">
             <input
-                class="w-full indent-5 md:w-[69vw] bg-[#193235] focus:outline-none focus:ring-5 focus:ring-slate-100 rounded-md"
+                class="w-full indent-5 md:w-[69vw] bg-[#193235] focus:outline-none rounded-md"
                 type="text" placeholder="Search: City">
-            <div class="search-icon h-[2rem]">
+            <div class="search-icon h-[2rem] hover:cursor-pointer hover:scale-110 active:scale-150">
                 <img class="object-cover h-full w-auto" src="assets/images/search.png" alt="" srcset="">
             </div>
         </section>
@@ -73,7 +74,7 @@
                     <div class=""><span>Humidity: </span><span class="humid">54 %</span></div>
                     <div class=""><span>Wind: </span><span class="wind-speed">2.8 m/s</div>
                     <div class=""><span>Sunset: </span><span class="sunset">6:32 pm</span></div>
-                    <div class=""><span>Sunrise: </span><span class="sunrise">6:08 am</span></div>
+                    <div class=""><span>Sunrise: </span><span class="sunrise">6:12 am</span></div>
                     <div class=""><span>Pressure: </span><span class="pressure">1007 hpa</span>
                     </div>
                 </div>
@@ -253,7 +254,7 @@
         <div class="">policy</div>
         <div class="">contact us</div>
     </footer>
-    <script src="weather.js"></script>
+    <script type="module" src="assets/js/weather.js"></script>
 </body>
 
 </html>
