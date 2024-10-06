@@ -1,11 +1,11 @@
-let API_KEY;
+let API_KEY ;
 // Function to get the API key from the server
 const getAPIKey = async () => {
   console.log('Entering the Function getAPIKey');
-  const response = await fetch('/apikey');
+  let domain = "" // This will be domain name ex: https://www.skycast.com/
+  const response = await fetch(`${domain}apikey`);
   const data = await response.json();
   API_KEY = data.API_KEY;
-  console.log(API_KEY);
 }
 
 getAPIKey();
@@ -41,7 +41,12 @@ const directGeocoding = async (city) => {
     );
     const data = await response.json();
     console.log(data);
+    if (data.length >0){
     return { lat: data[0].lat, lon: data[0].lon, name: data[0].name, state: data[0].state, country: data[0].country };
+}else{
+  console.log("Incorrect Location given")
+  throw new Error("Incorrect Location");
+}
   };
 
   // Function to get the city from latitude and longitude

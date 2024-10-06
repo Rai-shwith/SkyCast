@@ -1,7 +1,7 @@
 # My Notes
 
 ## Features 
-- add local name to the city along with the English 
+- add local name to the city along with the English
 
 ## Icon Name and the code
 ### Slight rain:
