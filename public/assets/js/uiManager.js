@@ -15,7 +15,7 @@ const handleMainWeatherBoxUI = async (weatherData, locationData) => {
     const timezone = weatherData.timezone;
     let precipitation;
     try {
-        precipitation = weatherData.rain['1h']
+        precipitation = weatherData.rain['1h'] || weatherData.rain['3h'];
     } catch (error) {
         console.log(error);
         precipitation = 0;
@@ -27,7 +27,7 @@ const handleMainWeatherBoxUI = async (weatherData, locationData) => {
     const sunrise = new Date((weatherData.sys.sunrise + myTimezone + timezone) * 1000);
     const sunset = new Date((weatherData.sys.sunset + myTimezone + timezone) * 1000);
 
-    const imgLocation = 'assets/images/'
+    const imgLocation = 'assets/images/';
 
     const mainWeatherBox = document.querySelector('.main-weather-box'); // Get the main weather box
     mainWeatherBox.querySelector('.icon').setAttribute('src', imgLocation + iconCode + '.png') // Set the weather icon
@@ -45,6 +45,7 @@ const handleMainWeatherBoxUI = async (weatherData, locationData) => {
     mainWeatherBox.querySelector('.sunrise').textContent = timeFormat(sunrise); // set the sunrise time
     mainWeatherBox.querySelector('.sunset').textContent = timeFormat(sunset); // set the sunset time
     searchInput.value = '';
+    handleColorsUI(iconCode)
 }
 
 const handleTimelyWeatherBoxUI = async (timelyForecastData) => {
@@ -60,15 +61,15 @@ const handleTimelyWeatherBoxUI = async (timelyForecastData) => {
         date = new Date((forecast.dt + myTimezone + timezone) * 1000);
         iconCode = String(forecast.weather[0].icon).slice(0, 2);
         let card = document.createElement('div');
-        card.classList.add("weather-card", "flex", "justify-between", "items-center", "mx-5", "py-2");
+        card.classList.add("weather-card", "flex","flex-col","md:flex-row", "justify-between", "items-center", "mx-5", "py-2");
         card.innerHTML = `
-                    <div class="flex flex-col items-start text-sm md:text-lg">
-                        <div class="">${timeFormat(date)}</div>
-                        <div class="">${getDayName(date)}</div>
-                    </div>
-                    <div class="visuals">
-                        <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/${iconCode}.png">
-                    </div>
+        <div class="visuals">
+            <img class="visual h-[3rem] md:h-[5rem]" src="assets/images/${iconCode}.png">
+        </div>
+        <div class="flex flex-col items-start text-sm md:text-lg">
+            <div class="">${timeFormat(date)}</div>
+            <div class="">${getDayName(date)}</div>
+        </div>
         `
         if (index % 2) {
             rightUI.appendChild(card);
@@ -88,7 +89,7 @@ const handleDailyWeatherBoxUI = async (nextFiveDayForecast, locationData) => {
         let timezone = weatherData.timezone;
         let date = new Date((weatherData.dt + myTimezone + timezone) * 1000);
         let dayCard = document.createElement('div');
-        dayCard.classList.add("day-card", "flex", "bg-[#081A1D]","hover:scale-105", "active:scale-90", "hover:cursor-pointer", "py-5", "px-10", "rounded-xl", "flex-col", "items-center", "m-1", "w-fit", "flex-shrink-0");
+        dayCard.classList.add("day-card", "flex", "bg-[var(--fg-color)]","hover:scale-105", "active:scale-90", "hover:cursor-pointer", "py-5", "px-10", "rounded-xl", "flex-col", "items-center", "m-1", "w-fit", "flex-shrink-0");
         dayCard.innerHTML = `
         <div class="day">${getDayName(date)}</div>
                 <img class="visual h-[5rem]" src="assets/images/${iconCode}.png">
@@ -121,6 +122,63 @@ const toggleLoading = ()=> {
         loadingAnimation.style.animationPlayState = 'paused'
         loadingAnimation.style.animation = 'none';
         loadingAnimation.style.display = 'none';
+    }
+}
+
+const weatherConditions = {
+    '01': { 
+        bgColor: '#FFE57F', // Mostly sunny
+        fgColor: '#FFEB3B', 
+        textColor: '#212121' 
+    },
+    '02': { 
+        bgColor: '#87CEFA', // Partly cloudy
+        fgColor: '#C4D8E2', 
+        textColor: '#FFFFFF' 
+    },
+    '03': { 
+        bgColor: '#B0BEC5', // Cloudy
+        fgColor: '#78909C', 
+        textColor: '#FFFFFF' 
+    },
+    '04': { 
+        bgColor: '#B0BEC5', // Cloudy and windy
+        fgColor: '#78909C', 
+        textColor: '#FFFFFF' 
+    },
+    '09': { 
+        bgColor: '#B0C4DE', // Drizzling
+        fgColor: '#718CA1', 
+        textColor: '#F1F1F1' 
+    },
+    '10': { 
+        bgColor: '#A9C4E8', // Slight rain
+        fgColor: '#607D8B', 
+        textColor: '#FFFFFF' 
+    },
+    '11': { 
+        bgColor: '#8FA5C3', // Rain
+        fgColor: '#37474F', 
+        textColor: '#E0F7FA' 
+    },
+    '13': { 
+        bgColor: '#CFD8DC', // Snow (if you ever want to handle it)
+        fgColor: '#9E9E9E', 
+        textColor: '#FFFFFF' 
+    },
+    '50': { 
+        bgColor: '#CFD8DC', // Foggy
+        fgColor: '#9E9E9E', 
+        textColor: '#FFFFFF' 
+    },
+};
+const handleColorsUI = (iconCode) => {
+    const root = document.documentElement;
+
+    if (weatherConditions[iconCode]) {
+        root.style.setProperty('--bg-color', weatherConditions[iconCode].bgColor);
+        root.style.setProperty('--fg-color', weatherConditions[iconCode].fgColor);
+        root.style.setProperty('--text-color', weatherConditions[iconCode].textColor);
     }
 }
 

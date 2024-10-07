@@ -30,8 +30,8 @@ const getCoordinates = async () => {
       
       ({ lat, lon } = await getGPSLocation());
     } catch (error) {
-      console.log("Unable to get GPS location.");
-      console.log("Trying to access IP cordinates")
+      console.error("Unable to get GPS location.");
+      console.log("Trying to access IP cordinates");
       ({ lat, lon } = await getIPLocation());
     }
     // If both GPS and IP methods fails to retreive cordinates these will be default coordinates
