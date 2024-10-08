@@ -127,9 +127,9 @@ const toggleLoading = ()=> {
 
 const weatherConditions = {
     '01': { 
-        bgColor: '#FFE57F', // Mostly sunny
-        fgColor: '#FFEB3B', 
-        textColor: '#212121' 
+        bgColor: '#ECDD7C', // Mostly sunny
+        fgColor: '#EBCD38', 
+        textColor: '#FFFFFF' 
     },
     '02': { 
         bgColor: '#87CEFA', // Partly cloudy
@@ -147,18 +147,18 @@ const weatherConditions = {
         textColor: '#FFFFFF' 
     },
     '09': { 
-        bgColor: '#B0C4DE', // Drizzling
-        fgColor: '#718CA1', 
+        bgColor: '#688DB0', // Drizzling
+        fgColor: '#356A8F', 
         textColor: '#F1F1F1' 
     },
     '10': { 
-        bgColor: '#A9C4E8', // Slight rain
-        fgColor: '#607D8B', 
+        bgColor: '#384F6D', // Slight rain
+        fgColor: '#192F51', 
         textColor: '#FFFFFF' 
     },
     '11': { 
-        bgColor: '#8FA5C3', // Rain
-        fgColor: '#37474F', 
+        bgColor: '#173148', // Rain
+        fgColor: '#002641', 
         textColor: '#E0F7FA' 
     },
     '13': { 
