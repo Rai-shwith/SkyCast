@@ -45,7 +45,7 @@ const handleMainWeatherBoxUI = async (weatherData, locationData) => {
     mainWeatherBox.querySelector('.sunrise').textContent = timeFormat(sunrise); // set the sunrise time
     mainWeatherBox.querySelector('.sunset').textContent = timeFormat(sunset); // set the sunset time
     searchInput.value = '';
-    handleColorsUI(iconCode)
+    // handleColorsUI(iconCode)
 }
 
 const handleTimelyWeatherBoxUI = async (timelyForecastData) => {
@@ -89,7 +89,7 @@ const handleDailyWeatherBoxUI = async (nextFiveDayForecast, locationData) => {
         let timezone = weatherData.timezone;
         let date = new Date((weatherData.dt + myTimezone + timezone) * 1000);
         let dayCard = document.createElement('div');
-        dayCard.classList.add("day-card", "flex", "bg-[var(--fg-color)]","hover:scale-105", "active:scale-90", "hover:cursor-pointer", "py-5", "px-10", "rounded-xl", "flex-col", "items-center", "m-1", "w-fit", "flex-shrink-0");
+        dayCard.classList.add("day-card", "flex", "backdrop-blur-lg","bg-white/30","border-white/20","shadow-lg","hover:scale-105", "active:scale-90", "hover:cursor-pointer", "py-5", "px-10", "rounded-xl", "flex-col", "items-center", "m-1", "w-fit", "flex-shrink-0");
         dayCard.innerHTML = `
         <div class="day">${getDayName(date)}</div>
                 <img class="visual h-[5rem]" src="assets/images/${iconCode}.png">
@@ -125,62 +125,64 @@ const toggleLoading = ()=> {
     }
 }
 
-const weatherConditions = {
-    '01': { 
-        bgColor: '#ECDD7C', // Mostly sunny
-        fgColor: '#EBCD38', 
-        textColor: '#FFFFFF' 
-    },
-    '02': { 
-        bgColor: '#87CEFA', // Partly cloudy
-        fgColor: '#C4D8E2', 
-        textColor: '#FFFFFF' 
-    },
-    '03': { 
-        bgColor: '#B0BEC5', // Cloudy
-        fgColor: '#78909C', 
-        textColor: '#FFFFFF' 
-    },
-    '04': { 
-        bgColor: '#B0BEC5', // Cloudy and windy
-        fgColor: '#78909C', 
-        textColor: '#FFFFFF' 
-    },
-    '09': { 
-        bgColor: '#688DB0', // Drizzling
-        fgColor: '#356A8F', 
-        textColor: '#F1F1F1' 
-    },
-    '10': { 
-        bgColor: '#384F6D', // Slight rain
-        fgColor: '#192F51', 
-        textColor: '#FFFFFF' 
-    },
-    '11': { 
-        bgColor: '#173148', // Rain
-        fgColor: '#002641', 
-        textColor: '#E0F7FA' 
-    },
-    '13': { 
-        bgColor: '#CFD8DC', // Snow (if you ever want to handle it)
-        fgColor: '#9E9E9E', 
-        textColor: '#FFFFFF' 
-    },
-    '50': { 
-        bgColor: '#CFD8DC', // Foggy
-        fgColor: '#9E9E9E', 
-        textColor: '#FFFFFF' 
-    },
-};
-const handleColorsUI = (iconCode) => {
-    const root = document.documentElement;
 
-    if (weatherConditions[iconCode]) {
-        root.style.setProperty('--bg-color', weatherConditions[iconCode].bgColor);
-        root.style.setProperty('--fg-color', weatherConditions[iconCode].fgColor);
-        root.style.setProperty('--text-color', weatherConditions[iconCode].textColor);
-    }
-}
+// const weatherConditions = {
+//     '01': { 
+//         bgColor: '#ECDD7C', // Mostly sunny
+//         fgColor: '#EBCD38', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '02': { 
+//         bgColor: '#87CEFA', // Partly cloudy
+//         fgColor: '#C4D8E2', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '03': { 
+//         bgColor: '#B0BEC5', // Cloudy
+//         fgColor: '#78909C', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '04': { 
+//         bgColor: '#B0BEC5', // Cloudy and windy
+//         fgColor: '#78909C', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '09': { 
+//         bgColor: '#688DB0', // Drizzling
+//         fgColor: '#356A8F', 
+//         textColor: '#F1F1F1' 
+//     },
+//     '10': { 
+//         bgColor: '#384F6D', // Slight rain
+//         fgColor: '#192F51', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '11': { 
+//         bgColor: '#173148', // Rain
+//         fgColor: '#002641', 
+//         textColor: '#E0F7FA' 
+//     },
+//     '13': { 
+//         bgColor: '#CFD8DC', // Snow (if you ever want to handle it)
+//         fgColor: '#9E9E9E', 
+//         textColor: '#FFFFFF' 
+//     },
+//     '50': { 
+//         bgColor: '#CFD8DC', // Foggy
+//         fgColor: '#9E9E9E', 
+//         textColor: '#FFFFFF' 
+//     },
+// };
+// const handleColorsUI = (iconCode) => {
+//     const root = document.documentElement;
+
+//     if (weatherConditions[iconCode]) {
+//         root.style.setProperty('--bg-color', weatherConditions[iconCode].bgColor);
+//         root.style.setProperty('--fg-color', weatherConditions[iconCode].fgColor);
+//         // root.style.setProperty('--text-color', weatherConditions[iconCode].textColor);
+//     }
+// }
+
 
 // scroll working 
 const scrollContainer = document.querySelector('.daily-weather-slides');
