@@ -1,6 +1,8 @@
+import { flyToLocation } from "./map.js";
 import { timeFormat, getDayName, getCoordinates } from "./utils.js"
 import { directGeocoding, reverseGeocoding } from "./location.js";
 import { getCurrentWeather, filterFiveDayForecast, getFiveDayForcast } from "./weather.js"
+
 const myTimezone = (new Date()).getTimezoneOffset() * 60; // Timezone offset .India -> -19800
 
 const handleMainWeatherBoxUI = async (weatherData, locationData) => {
@@ -46,6 +48,8 @@ const handleMainWeatherBoxUI = async (weatherData, locationData) => {
     mainWeatherBox.querySelector('.sunset').textContent = timeFormat(sunset); // set the sunset time
     searchInput.value = '';
     // handleColorsUI(iconCode)
+    // Handles the map
+    
 }
 
 const handleTimelyWeatherBoxUI = async (timelyForecastData) => {
@@ -110,6 +114,13 @@ const handleDailyWeatherBoxUI = async (nextFiveDayForecast, locationData) => {
         dailyWeatherUI.appendChild(dayCard);
     }
 
+}
+
+const handleMapUI = async (lat,lon) => {
+    toggleLoading()
+    const locationData = await reverseGeocoding(lat, lon);
+    await flowController(lat, lon, locationData);
+    toggleLoading()
 }
 
 const toggleLoading = ()=> {
@@ -185,6 +196,7 @@ const toggleLoading = ()=> {
 
 
 // scroll working 
+
 const scrollContainer = document.querySelector('.daily-weather-slides');
 scrollContainer.addEventListener('wheel', (event) => {
   event.preventDefault(); // Prevent the default vertical scroll behavior
@@ -223,6 +235,7 @@ const handleSearch = async () => {
         const { lat, lon, name, state, country } = result;
         await flowController(lat, lon, { name, state, country });
         toggleLoading()
+        await flyToLocation(lat,lon);
     }
 }
 
@@ -233,6 +246,8 @@ const main = async () => {
     await flowController(lat, lon, locationData);
     document.querySelector('main').style.display = 'flex';
     toggleLoading()
+    document.getElementById('map').style.visibility = "visible";
+    await flyToLocation(lat,lon);
 
 }
 main()
@@ -245,3 +260,5 @@ const flowController = async (lat, lon, locationData) => {
     handleTimelyWeatherBoxUI(todayTimelyForecast);
     handleDailyWeatherBoxUI(nextFiveDayForecast, locationData);
 }
+
+export {handleMapUI}
