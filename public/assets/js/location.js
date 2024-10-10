@@ -66,7 +66,7 @@ const reverseGeocoding = async (lat, lon) => {
   // Function to get the location of the user using the IP address
 const getIPLocation = async () => {
   console.log('Entering the Function getIPLocation');
-    const response = await fetch("https://ipapi.co/json/");
+    const response = await fetch("/api/get-location");
     const data = await response.json();
     return { lat: data.latitude, lon: data.longitude };
   };

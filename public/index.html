@@ -65,10 +65,10 @@
     <!-- Loading Animation -->
     <div class="pulsing-circle">
     </div>
-    <main style="display: none;" class="flex flex-col ">
+    <main style="visibility: hidden;" class="flex flex-col ">
         <section class="search self-center flex px-5 md:px-10 justify-center gap-4 my-4">
             <input
-                class="w-full indent-5 md:w-[69vw] backdrop-blur-lg bg-white/30 border-white/20 shadow-lg text-[var(--text-color)] focus:outline-none rounded-md"
+                class="w-full indent-5 md:w-[69vw] placeholder-black backdrop-blur-lg bg-white/30 border-white/20 shadow-lg text-[var(--text-color)] focus:outline-none rounded-md"
                 type="text" placeholder="Search: City">
             <div class="search-icon h-8 w-8 hover:cursor-pointer hover:scale-110 active:scale-150">
                 <!-- <img class="object-cover h-full w-auto" src="assets/images/search.png" alt="" srcset=""> -->
@@ -80,8 +80,11 @@
                 </svg>
             </div>
         </section>
+        <section style="visibility: hidden;" id="map"
+            class="self-center w-11/12 md:w-3/4 h-[30vh] md:h-[30vw] p-10 rounded-md  mt-4 mb-10 backdrop-blur-lg bg-white/30 border-white/20 shadow-lg">
+        </section>
         <section
-            class="main-weather-box flex flex-col md:flex-row-reverse justify-around self-center w-3/4 p-10 rounded-md  mt-4 backdrop-blur-lg bg-white/30 border-white/20 shadow-lg">
+            class="main-weather-box flex flex-col md:flex-row-reverse justify-around self-center w-11/12 md:w-3/4 p-10 rounded-md  mt-4 backdrop-blur-lg bg-white/30 border-white/20 shadow-lg">
             <div class="weather-visual flex flex-col items-center">
                 <img class="icon h-[10rem]" src="assets/images/01.png" alt="" srcset="">
                 <div class="info flex flex-col items-center">
@@ -115,22 +118,21 @@
             </div>
         </section>
         <section
-            class="timely-weather-slides flex justify-between rounded-md md:w-3/4 mx-10 overflow-x-auto self-center backdrop-blur-lg bg-white/30 border-white/20 shadow-lg my-10 p-10">
+            class="timely-weather-slides flex justify-between rounded-md md:w-3/4 w-11/12 mx-10 overflow-x-auto self-center backdrop-blur-lg bg-white/30 border-white/20 shadow-lg my-10 p-10">
             <div class="left flex flex-col w-full border-r-2 divide-y divide-[#193235] border-[#193235]">
             </div>
             <div class="right flex flex-col w-full divide-y divide-[#193235]">
             </div>
         </section>
         <section
-            class="daily-weather-slides no-scrollbar flex justify-around my-2 w-3/4 self-center  overflow-x-auto flex-shrink-0 overflow-hidden mb-10">
+            class="daily-weather-slides no-scrollbar flex justify-around my-2 w-11/12 self-center  overflow-x-auto flex-shrink-0 overflow-hidden mb-10">
         </section>
     </main>
-    <section style="visibility: hidden;";" id="map" class="self-center w-3/4 h-[30vh] md:h-[30vw] p-10 rounded-md  mt-4 mb-10 backdrop-blur-lg bg-white/30 border-white/20 shadow-lg" ></section>
-    <footer class="flex justify-around w-full backdrop-blur-lg bg-white/30 border-white/20 shadow-lg fixed bottom-0">
+    <!-- <footer class="flex justify-around w-full backdrop-blur-lg bg-white/30 border-white/20 shadow-lg fixed bottom-0">
         <div class="">about</div>
         <div class="">policy</div>
         <div class="">contact us</div>
-    </footer>
+    </footer> -->
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module" src="assets/js/weather.js"></script>

@@ -104,10 +104,7 @@ const handleDailyWeatherBoxUI = async (nextFiveDayForecast, locationData) => {
                     <div class="weather-type">${weatherType}</div>
                 </div>`
         dayCard.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth' // Adds smooth scrolling
-              });
+            scrollToCenter();
             handleMainWeatherBoxUI(weatherData.next[0], locationData);
             handleTimelyWeatherBoxUI(weatherData.next);
         })
@@ -116,16 +113,35 @@ const handleDailyWeatherBoxUI = async (nextFiveDayForecast, locationData) => {
 
 }
 
+const scrollToCenter = () => {
+    const element = document.querySelector('.main-weather-box');
+    const rect = element.getBoundingClientRect();
+    const elementPosition = rect.top + window.scrollY; // Get the element's position
+    const offset = window.innerHeight / 2 - rect.height / 2; // Calculate the offset for center alignment
+  
+    window.scrollTo({
+      top: elementPosition - offset,
+      behavior: 'smooth',
+    });
+  };
+
 const handleMapUI = async (lat,lon) => {
-    toggleLoading()
-    const locationData = await reverseGeocoding(lat, lon);
-    await flowController(lat, lon, locationData);
-    toggleLoading()
+    toggleLoading(true)
+    try {
+        const locationData = await reverseGeocoding(lat, lon);
+        await flowController(lat, lon, locationData);
+        scrollToCenter()
+    } catch (error) {
+        console.error(error)
+        alert('No weather Data for that Location');
+    }finally{
+        toggleLoading(false)
+    }
 }
 
-const toggleLoading = ()=> {
+const toggleLoading = (bool)=> {
     const loadingAnimation = document.querySelector('.pulsing-circle');
-    if (loadingAnimation.style.display == 'none') {
+    if (bool) {
         loadingAnimation.style.animationPlayState = 'running'
         loadingAnimation.style.animation = 'pulse 2.5s infinite';
         loadingAnimation.style.display = 'block';
@@ -137,65 +153,6 @@ const toggleLoading = ()=> {
 }
 
 
-// const weatherConditions = {
-//     '01': { 
-//         bgColor: '#ECDD7C', // Mostly sunny
-//         fgColor: '#EBCD38', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '02': { 
-//         bgColor: '#87CEFA', // Partly cloudy
-//         fgColor: '#C4D8E2', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '03': { 
-//         bgColor: '#B0BEC5', // Cloudy
-//         fgColor: '#78909C', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '04': { 
-//         bgColor: '#B0BEC5', // Cloudy and windy
-//         fgColor: '#78909C', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '09': { 
-//         bgColor: '#688DB0', // Drizzling
-//         fgColor: '#356A8F', 
-//         textColor: '#F1F1F1' 
-//     },
-//     '10': { 
-//         bgColor: '#384F6D', // Slight rain
-//         fgColor: '#192F51', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '11': { 
-//         bgColor: '#173148', // Rain
-//         fgColor: '#002641', 
-//         textColor: '#E0F7FA' 
-//     },
-//     '13': { 
-//         bgColor: '#CFD8DC', // Snow (if you ever want to handle it)
-//         fgColor: '#9E9E9E', 
-//         textColor: '#FFFFFF' 
-//     },
-//     '50': { 
-//         bgColor: '#CFD8DC', // Foggy
-//         fgColor: '#9E9E9E', 
-//         textColor: '#FFFFFF' 
-//     },
-// };
-// const handleColorsUI = (iconCode) => {
-//     const root = document.documentElement;
-
-//     if (weatherConditions[iconCode]) {
-//         root.style.setProperty('--bg-color', weatherConditions[iconCode].bgColor);
-//         root.style.setProperty('--fg-color', weatherConditions[iconCode].fgColor);
-//         // root.style.setProperty('--text-color', weatherConditions[iconCode].textColor);
-//     }
-// }
-
-
-// scroll working 
 
 const scrollContainer = document.querySelector('.daily-weather-slides');
 scrollContainer.addEventListener('wheel', (event) => {
@@ -218,7 +175,7 @@ searchIcon.addEventListener('click', () => {
 });
 
 const handleSearch = async () => {
-    toggleLoading()
+    toggleLoading(true)
     const searchValue = searchInput.value.trim();
     if (searchValue) {
         console.log('searching the weather of ' + searchValue);
@@ -226,7 +183,7 @@ const handleSearch = async () => {
         try {
             result = await directGeocoding(searchValue); // Get the cordinates using city name 
         } catch (error) {
-            toggleLoading();
+            toggleLoading(false);
             setTimeout(() => {
                 alert("Incorrect Location");
             }, 100);
@@ -234,8 +191,10 @@ const handleSearch = async () => {
         }
         const { lat, lon, name, state, country } = result;
         await flowController(lat, lon, { name, state, country });
-        toggleLoading()
+        toggleLoading(false)
         await flyToLocation(lat,lon);
+    }else{
+        toggleLoading(false)
     }
 }
 
@@ -244,10 +203,11 @@ const main = async () => {
     const { lat, lon } = await getCoordinates();
     const locationData = await reverseGeocoding(lat, lon);
     await flowController(lat, lon, locationData);
-    document.querySelector('main').style.display = 'flex';
-    toggleLoading()
+    document.querySelector('main').style.visibility = "visible";
+    toggleLoading(true)
     document.getElementById('map').style.visibility = "visible";
     await flyToLocation(lat,lon);
+    toggleLoading(false)
 
 }
 main()

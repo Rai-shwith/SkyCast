@@ -1,8 +1,25 @@
 import { handleMapUI } from "./uiManager.js";
 import { API_KEY } from "./location.js";
 // Initialize the map and set its view to a chosen location and zoom level
-const map = L.map('map').setView([12.9716, 77.5946], 13);  // Set to Bangalore by default
+const map = L.map('map',{
+    scrollWheelZoom: false, // Disable scroll zoom by default
+}).setView([12.9716, 77.5946], 13);  // Set to Bangalore by default
 // const map = L.map('map');
+
+// Attach wheel event listener to map container
+const mapContainer = map.getContainer();
+
+mapContainer.addEventListener('wheel', (event) => {
+    if (event.shiftKey || event.ctrlKey) {
+        event.preventDefault(); // Prevent the default scroll behavior
+        if (event.deltaY < 0) {
+            map.zoomIn(); // Zoom in if scrolling up
+        } else {
+            map.zoomOut(); // Zoom out if scrolling down
+        }
+    }
+});
+
 
 // Load and display a tile layer on the map (OpenStreetMap)
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
@@ -33,7 +50,7 @@ const onMapClick = async (e) => {
     handleMapUI(lat,lng);
 }
 
-const flyToLocation = async (lat, lng, zoomLevel = 9) => {
+const flyToLocation = async (lat, lng, zoomLevel = 10) => {
     console.log(lat,lng)
     if (marker) {
         map.removeLayer(marker);
@@ -41,7 +58,7 @@ const flyToLocation = async (lat, lng, zoomLevel = 9) => {
     if (!isNaN(lat) && !isNaN(lng)) {
         map.flyTo([lat, lng], zoomLevel, {
             animate: true,
-            duration: 4  // Duration of the flight in seconds
+            duration: 2  // Duration of the flight in seconds
         });
     } else {
         console.error("Invalid LatLng: ", lat, lng);
