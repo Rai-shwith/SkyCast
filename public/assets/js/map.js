@@ -46,8 +46,8 @@ const onMapClick = async (e) => {
     const lat = e.latlng.lat;
     const lng = e.latlng.lng;
     addMarker(lat, lng);
-
     handleMapUI(lat,lng);
+    flyToLocation(lat,lng);
 }
 
 const flyToLocation = async (lat, lng, zoomLevel = 10) => {
