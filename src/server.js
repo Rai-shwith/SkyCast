@@ -21,6 +21,31 @@ const cache = {}; // cache for storing ip
 app.set('trust proxy', true);
 
 
+app.post('/current-weather', async (req,res) => {
+	console.log('Entering the endpoint current-weather');
+  const {lat,lon} = req.body();
+	const response = await axios.get(
+		`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+	);
+	const data = await response.json();
+	// console.log(data);
+	res.json(data).status(200);
+
+})
+
+app.post('/current-weather', async (req,res) => {
+	console.log('Entering the endpoint current-weather');
+  const {lat,lon} = req.body();
+	const response = await axios.get(
+		`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+	);
+	const data = await response.json();
+	// console.log(data);
+	res.json(data).status(200);
+
+})
+
+
 // Get location based on client's IP
 app.get('/api/get-location', async (req, res) => {
   console.log('Entering the get-location endpoint');

@@ -1,12 +1,13 @@
-// import fs from "fs"
-import { API_KEY } from "./location.js";
-
-
 // Function to get the current weather
 const getCurrentWeather = async (lat, lon) => {
 	console.log('Entering the Function getCurrentWeather')
-	const response = await fetch(
-		`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+	const response = await fetch('/current-weather', {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ lat, lon }),
+	}
 	);
 	const data = await response.json();
 	// console.log(data);

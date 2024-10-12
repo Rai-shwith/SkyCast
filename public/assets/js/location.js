@@ -59,17 +59,4 @@ const getIPLocation = async () => {
   };
 
 
-  //function to fetch the geolocation coordinates when the browser loads the document
-// document.addEventListener('DOMContentLoaded', async () => {
-//   try {
-//     //   const { lat, lon } = await getGPSLocation();
-//     const { lat, lon } = await getIPLocation();
-//     const address = await reverseGeocoding(lat, lon);
-//     console.log(address);
-//     document.body.innerHTML=address.name;
-//   } catch (error) {
-//     console.error('Error getting GPS location:', error);
-//   }
-// });
-
-export {directGeocoding,getGPSLocation,reverseGeocoding,getIPLocation,API_KEY};
+export {directGeocoding,getGPSLocation,reverseGeocoding,getIPLocation};

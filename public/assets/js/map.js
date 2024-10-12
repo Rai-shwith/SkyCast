@@ -1,5 +1,4 @@
 import { handleMapUI } from "./uiManager.js";
-import { API_KEY } from "./location.js";
 // Initialize the map and set its view to a chosen location and zoom level
 const map = L.map('map',{
     scrollWheelZoom: false, // Disable scroll zoom by default
@@ -25,8 +24,6 @@ mapContainer.addEventListener('wheel', (event) => {
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: 'Map data © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
 }).addTo(map);
-// L.tileLayer(`https://tile.openweathermap.org/map/clouds_new/{z}/{x}/{y}.png?appid=${API_KEY}`,{})
-    // .addTo(map);
 
 // Add a marker at a specific location
 // L.marker([12.9716, 77.5946]).addTo(map);
