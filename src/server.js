@@ -11,10 +11,6 @@ const API_KEY = process.env.API_KEY;
 
 app.use(express.static('public'));
 
-// API key endpoint
-app.get('/apikey', (req, res) => {
-  res.json({ API_KEY });
-});
 
 // Middleware for JSON requests
 app.use(express.json());

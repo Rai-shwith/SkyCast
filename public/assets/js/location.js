@@ -1,16 +1,3 @@
-let API_KEY ;
-// Function to get the API key from the server
-const getAPIKey = async () => {
-  console.log('Entering the Function getAPIKey');
-  let domain = "" // This will be domain name ex: https://www.skycast.com/
-  const response = await fetch(`${domain}apikey`);
-  const data = await response.json();
-  API_KEY = data.API_KEY;
-}
-
-getAPIKey();
-
-
 // Function to get the location of the user using their GPS coordinates
 const getGPSLocation = async () => {
     console.log('Entering the Function getGPSLocation');
