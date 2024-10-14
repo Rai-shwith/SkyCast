@@ -21,29 +21,34 @@ const cache = {}; // cache for storing ip
 app.set('trust proxy', true);
 
 
-app.post('/current-weather', async (req,res) => {
-	console.log('Entering the endpoint current-weather');
-  const {lat,lon} = req.body();
-	const response = await axios.get(
-		`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-	);
-	const data = await response.json();
-	// console.log(data);
-	res.json(data).status(200);
+app.post('/current-weather', async (req, res) => {
+  console.log('Entering the endpoint current-weather');
+  const { lat, lon } = req.body();
+  const response = await axios.get(
+    `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+  );
+  const data = await response.json();
+  // console.log(data);
+  res.json(data).status(200);
 
+});
+
+app.post('/api/direct-geocoding', async (req, res) => {
 })
+console.log('Entering the endpoint direct-geocoding');
+const city = req.body.city;
+const response = await axios.get(
+  `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}`
+);
+const data = await response.json();
+console.log(data);
+if (data.length > 0) {
+  res.json({ lat: data[0].lat, lon: data[0].lon, name: data[0].name, state: data[0].state, country: data[0].country }).status(200);
+} else {
+  console.log("Incorrect Location given")
+  res.json({ error: "Incorrect Location" }).status(404);
+}
 
-app.post('/current-weather', async (req,res) => {
-	console.log('Entering the endpoint current-weather');
-  const {lat,lon} = req.body();
-	const response = await axios.get(
-		`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-	);
-	const data = await response.json();
-	// console.log(data);
-	res.json(data).status(200);
-
-})
 
 
 // Get location based on client's IP
@@ -72,7 +77,7 @@ app.get('/api/get-location', async (req, res) => {
     // check the limit of cache 
     const limit = 1000
     if (Object.keys(cache).length > limit) {
-      console.log("Cache has reached it limit ",limit,"\nClearing the cache")
+      console.log("Cache has reached it limit ", limit, "\nClearing the cache")
     }
 
     // Send the location data as JSON to the client

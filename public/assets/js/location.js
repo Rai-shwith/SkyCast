@@ -24,16 +24,14 @@ const getGPSLocation = async () => {
 const directGeocoding = async (city) => {
   console.log('Entering the Function directGeocoding');
     const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}`
-    );
+    '/api/direct-geocoding');
     const data = await response.json();
     console.log(data);
-    if (data.length >0){
-    return { lat: data[0].lat, lon: data[0].lon, name: data[0].name, state: data[0].state, country: data[0].country };
-}else{
-  console.log("Incorrect Location given")
-  throw new Error("Incorrect Location");
-}
+    if (data.error) {
+      console.log("Incorrect Location given")
+      throw new Error(data.error);
+    }
+    return data;
   };
 
   // Function to get the city from latitude and longitude

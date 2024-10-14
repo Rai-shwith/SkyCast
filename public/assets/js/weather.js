@@ -1,7 +1,7 @@
 // Function to get the current weather
 const getCurrentWeather = async (lat, lon) => {
 	console.log('Entering the Function getCurrentWeather')
-	const response = await fetch('/current-weather', {
+	const response = await fetch('/api/current-weather', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json',
