@@ -21,13 +21,13 @@ const cache = {}; // cache for storing ip
 app.set('trust proxy', true);
 
 
-app.post('/current-weather', async (req, res) => {
+app.post('/api/current-weather', async (req, res) => {
   console.log('Entering the endpoint current-weather');
   const { lat, lon } = req.body;
   const response = await axios.get(
     `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
   );
-  const data = await response.json();
+  const data = await response.data;
   // console.log(data);
   res.json(data).status(200);
 
@@ -39,7 +39,7 @@ app.post('/api/direct-geocoding', async (req, res) => {
   const response = await axios.get(
     `https://api.openweathermap.org/geo/1.0/direct?q=${city}&appid=${API_KEY}`
   );
-  const data = await response.json();
+  const data = await response.data;
   console.log(data);
   if (data.length > 0) {
     res.json({ lat: data[0].lat, lon: data[0].lon, name: data[0].name, state: data[0].state, country: data[0].country }).status(200);
@@ -50,12 +50,12 @@ app.post('/api/direct-geocoding', async (req, res) => {
 })
 
 app.post('/api/reverse-geocoding', async (req, res) => {
-  const {lat,lon} = req.body;
+  const { lat, lon } = req.body;
   try {
-    const response = await axios.post(
+    const response = await axios.get(
       `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_KEY}`
     );
-    const data = await response.json();
+    const data = await response.data;
     res.json({ name: data[0].name, state: data[0].state, country: data[0].country }).status(200);
   } catch (error) {
     console.error('Error in /api/reverse-geocoding:', error.message);
