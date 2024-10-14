@@ -55,16 +55,16 @@ const filterFiveDayForecast = async (fiveDayForecast) => {
 const getFiveDayForcast = async (lat, lon) => {
 	console.log('Entering the Function getFiveDayForcast')
 	const response = await fetch(
-		`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
-	);
-	const data = await response.json();
-	const forecasts = data;
-	// fs.writeFile("exampleFullFiveDay.json", JSON.stringify(forecasts), (error) => {
-	//   if (error) {
-	//     console.log(error);
-	//   }
-	// });
-	return forecasts
+	'/api/five-day-forecast',
+	{
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ lat, lon }),
+	});
+	const forecasts = await response.json();
+	return forecasts;
 }
 
 

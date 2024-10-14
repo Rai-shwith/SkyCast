@@ -63,6 +63,16 @@ app.post('/api/reverse-geocoding', async (req, res) => {
   }
 });
 
+app.post('/api/five-day-forecast', async (req, res) => {
+	console.log('Entering the endpoint five-day-forecast')
+  const {lat,lon} = req.body;
+	const response = await axios.get(
+		`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${API_KEY}&units=metric`
+	);
+	const forecasts = await response.data;
+  res.json(forecasts).status(200);
+});
+
 // Get location based on client's IP
 app.get('/api/get-location', async (req, res) => {
   console.log('Entering the get-location endpoint');
