@@ -24,7 +24,14 @@ const getGPSLocation = async () => {
 const directGeocoding = async (city) => {
   console.log('Entering the Function directGeocoding');
     const response = await fetch(
-    '/api/direct-geocoding');
+    '/api/direct-geocoding',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ city })
+    });
     const data = await response.json();
     console.log(data);
     if (data.error) {
@@ -37,16 +44,23 @@ const directGeocoding = async (city) => {
   // Function to get the city from latitude and longitude
 const reverseGeocoding = async (lat, lon) => {
   console.log('Entering the Function reverseGeocoding')
-  try {
-    const response = await fetch(
-      `https://api.openweathermap.org/geo/1.0/reverse?lat=${lat}&lon=${lon}&appid=${API_KEY}`
-    );
+  const response = await fetch(
+    '/api/reverse-geocoding',
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ lat, lon })
+    });
+   if (response.status === 200){
     const data = await response.json();
-    return { name: data[0].name, state: data[0].state, country: data[0].country };
-  } catch (error) {
-    throw error;
+    return data;
+  }else{
+    console.log("Error in /api/reverse-geocoding");
+    throw new Error("Error in /api/reverse-geocoding");
   }
-  }
+}
 
   // Function to get the location of the user using the IP address
 const getIPLocation = async () => {
