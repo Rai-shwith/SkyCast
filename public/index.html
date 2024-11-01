@@ -2,6 +2,15 @@
 <html lang="en">
 
 <head>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-65K2CPE602"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-65K2CPE602');
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SkyCast</title>
@@ -48,13 +57,14 @@
         }
     </style>
 
-<!-- Uncomment the following for quick styling (not for production) -->
+    <!-- Uncomment the following for quick styling (not for production) -->
     <!-- <script src="https://cdn.tailwindcss.com"></script> -->
 
     <script type="module" src="assets/js/location.js"></script>
 </head>
 
-<body class="flex flex-col bg-gradient-to-r text-white from-purple-400 to-blue-500 text-[var(--text-color)] min-h-screen">
+<body
+    class="flex flex-col bg-gradient-to-r text-white from-purple-400 to-blue-500 text-[var(--text-color)] min-h-screen">
     <header
         class="flex h-[100px] gap-5  items-center self-center w-full backdrop-blur-lg bg-white/30 border-white/20 shadow-lg p-5 rounded-lg mt-5">
         <div class="app-logo"><img src="assets/images/logo.svg" alt="" srcset="" class="h-[4rem]"></div>
@@ -70,8 +80,8 @@
                 type="text" placeholder="Search: City">
             <div class="search-icon h-8 w-8 hover:cursor-pointer hover:scale-110 active:scale-150">
                 <!-- <img class="object-cover h-full w-auto" src="assets/images/search.png" alt="" srcset=""> -->
-                <svg class="stroke-current text-blue-300 w-full h-full" xmlns="http://www.w3.org/2000/svg"
-                    width="1em" height="1em" viewBox="0 0 24 24">
+                <svg class="stroke-current text-blue-300 w-full h-full" xmlns="http://www.w3.org/2000/svg" width="1em"
+                    height="1em" viewBox="0 0 24 24">
                     <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
                         stroke-width="3" d="M17.5 17.5L22 22m-2-11a9 9 0 1 0-18 0a9 9 0 0 0 18 0"
                         color="currentColor" />
@@ -126,12 +136,15 @@
             class="daily-weather-slides no-scrollbar flex justify-around my-2 w-11/12 self-center  overflow-x-auto flex-shrink-0 overflow-hidden mb-10">
         </section>
     </main>
-    <footer class="flex justify-around w-full backdrop-blur-lg bg-white/30 border border-white/20 shadow-lg relative bottom-0">
+    <footer
+        class="flex justify-around w-full backdrop-blur-lg bg-white/30 border border-white/20 shadow-lg relative bottom-0">
         <p>
-            Check out the <a class="text-blue-600 underline hover:text-blue-800" target="_blank" href="https://github.com/Rai-shwith/SkyCast">source code</a> 
-            or learn more about the <a class="text-blue-600 underline hover:text-blue-800" rel="noopener" target="_blank" href="https://github.com/Rai-shwith/">creator</a>.
+            Check out the <a class="text-blue-600 underline hover:text-blue-800" target="_blank"
+                href="https://github.com/Rai-shwith/SkyCast">source code</a>
+            or learn more about the <a class="text-blue-600 underline hover:text-blue-800" rel="noopener"
+                target="_blank" href="https://github.com/Rai-shwith/">creator</a>.
         </p>
-    </footer>    
+    </footer>
     <!-- Leaflet JS -->
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <script type="module" src="assets/js/weather.js"></script>
