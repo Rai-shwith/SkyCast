@@ -175,28 +175,60 @@ searchIcon.addEventListener('click', () => {
 });
 
 const handleSearch = async () => {
-    toggleLoading(true)
+    toggleLoading(true);
     const searchValue = searchInput.value.trim();
-    if (searchValue) {
-        console.log('searching the weather of ' + searchValue);
-        let result;
+
+    if (!searchValue) {
+        toggleLoading(false);
+        return;
+    }
+
+    console.log('Searching for:', searchValue);
+
+    let lat, lon, result;
+
+    // Check if input is in latitude & longitude format
+    const coordinateRegex = /-?\d+(\.\d+)?\s*,?\s*-?\d+(\.\d+)?/;
+    if (coordinateRegex.test(searchValue)) {
+        // Extract lat & lon, removing parentheses or extra spaces
+        const [latStr, lonStr] = searchValue.replace(/[()]/g, "").split(/\s*,?\s+/);
+        lat = parseFloat(latStr);
+        lon = parseFloat(lonStr);
+
+        if (isNaN(lat) || isNaN(lon)) {
+            toggleLoading(false);
+            setTimeout(() => alert("Invalid Coordinates"), 100);
+            return;
+        }
+
+        console.log(`Coordinates detected: lat=${lat}, lon=${lon}`);
+
         try {
-            result = await directGeocoding(searchValue); // Get the cordinates using city name 
+            result = await reverseGeocoding(lat, lon);
         } catch (error) {
             toggleLoading(false);
-            setTimeout(() => {
-                alert("Incorrect Location");
-            }, 100);
+            setTimeout(() => alert("Reverse Geocoding Failed"), 100);
             throw error;
         }
-        const { lat, lon, name, state, country } = result;
-        await flowController(lat, lon, { name, state, country });
-        toggleLoading(false)
-        await flyToLocation(lat,lon);
-    }else{
-        toggleLoading(false)
+    } else {
+        // Normal city name search
+        try {
+            result = await directGeocoding(searchValue);
+        } catch (error) {
+            toggleLoading(false);
+            setTimeout(() => alert("Incorrect Location"), 100);
+            throw error;
+        }
+        lat = result.lat;
+        lon = result.lon;
     }
-}
+
+    const { name, state, country } = result;
+    await flowController(lat, lon, { name, state, country });
+    toggleLoading(false);
+    await flyToLocation(lat, lon);
+};
+
 
 // This funtion will run by default to fetch location of current
 const main = async () => {
