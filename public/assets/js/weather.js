@@ -1,17 +1,26 @@
+import { getKey } from "./location.js";
+
 // Function to get the current weather
 const getCurrentWeather = async (lat, lon) => {
-	console.log('Entering the Function getCurrentWeather')
-	const response = await fetch('/api/current-weather', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ lat, lon }),
-	}
+	console.log('Entering the Function getCurrentWeather');
+	const response = await fetch(
+	  `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${getKey()}&units=metric`
 	);
 	const data = await response.json();
 	// console.log(data);
-	return data
+	// res.json(data).status(200);
+
+	// const response = await fetch('/api/current-weather', {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	body: JSON.stringify({ lat, lon }),
+	// }
+	// );
+	// const data = await response.json();
+	// // console.log(data);
+	return data;
 };
 
 // This function filters 5 days 3 hourly forecasts array  to 5 days daily forcast array
@@ -53,17 +62,21 @@ const filterFiveDayForecast = async (fiveDayForecast) => {
 
 // Function to get the weater forcast for the next 5 days
 const getFiveDayForcast = async (lat, lon) => {
-	console.log('Entering the Function getFiveDayForcast')
+	console.log('Entering the Function getFiveDayForcast');
 	const response = await fetch(
-	'/api/five-day-forecast',
-	{
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		body: JSON.stringify({ lat, lon }),
-	});
+		`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${getKey()}&units=metric`
+	);
 	const forecasts = await response.json();
+	// const response = await fetch(
+	// '/api/five-day-forecast',
+	// {
+	// 	method: 'POST',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	body: JSON.stringify({ lat, lon }),
+	// });
+	// const forecasts = await response.json();
 	return forecasts;
 }
 
