@@ -1,6 +1,6 @@
-# [**SkyCast** ☁️🌦️](https://skycast-and5.onrender.com)  
+# [**SkyCast** ☁️🌦️](https://ashwithrai.me/SkyCast/)  
 *Your Personal Weather Companion*
-[website link](https://skycast-and5.onrender.com)
+[website link](https://ashwithrai.me/SkyCast/)
 
 ---
 
