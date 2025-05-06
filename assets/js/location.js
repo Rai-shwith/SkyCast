@@ -100,7 +100,7 @@ const getIPLocation = async () => {
   let data;
   try {
     // Call IP API to get location information
-    const response = await fetch(`https://ipapi.co/${ip}/json/`);
+    const response = await fetch(`https://ipapi.co/json/`);
     data = await response.json();
     // Check for error in response (rate limiting or API issues)
     if (data.error) {
